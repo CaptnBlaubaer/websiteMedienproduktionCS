@@ -687,4 +687,5 @@ footer a{
   color: var(--clr-white);
   font-weight:700;
   letter-spacing: var(--spacing);
+  cursor:pointer;
 }
