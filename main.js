@@ -117,3 +117,4 @@ discount_btn.addEventListener("click", ()=>{
         discount_btn.innerHTML = "click me!";
     }
 });
+

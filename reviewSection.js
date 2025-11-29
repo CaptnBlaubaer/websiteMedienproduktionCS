@@ -1,62 +1,56 @@
 // global constants
-const names = ["Stange, L.", "xAndré Pascholdx", "Kathi DeFiltre", "Thilo Spomoni", "Leo "];
-const imageFiles = ["laura.jpg","ondi.jpg","kathi.jpg","thilo.jpg","leo.jpg"];
-const texts = ["Christian toller Typ.","Gutaussehend und trinkfreudig.","Christian Schulze in 3 Worten: Macher, fähig, geiler Informatiker.", "Das kann ja wohl nicht Warzenschwein!","Chrissi, wir müssen reden."];
-
-// ************ CLASSES **************
-class Partner {
-    constructor (name, imgFilePath, flavourText){
-        this.name = name;
-        this.imgFilePath = imgFilePath;
-        this.flavourText = flavourText;
+const partnersAsList = [{
+        name: "Stange, L.",
+        imageFile : "laura.jpg",
+        flavourText : "Christian toller Typ."
+    },
+    {
+        name: "xAndré Pascholdx",
+        imageFile : "ondi.jpg",
+        flavourText : "Gutaussehend und trinkfreudig."
+    },
+    {
+        name: "Kathi DeFiltre",
+        imageFile : "kathi.jpg",
+        flavourText : "Christian Schulze in 3 Worten: Macher, fähig, geiler Informatiker." 
+    },
+    {
+        name: "Thilo aka Lolo Spomoni",
+        imageFile : "lolo.jpg",
+        flavourText : "Das kann ja wohl nicht Warzenschwein!"
+    },
+    {
+        name: "Leo",
+        imageFile : "leo.jpg",
+        flavourText : "Chrissi, wir müssen reden."
     }
-}
-
-class PartnerList {
-    static #getPartnerList(){
-        const partnerList = [];
-
-        if (names.length === imageFiles.length && names.length === texts.length){
-            
-            for(let index = 0; index < names.length; index ++){
-                let partner = new Partner(names[index], imageFiles[index],texts[index]);
-                partnerList.push(partner);
-            }
-
-        } else {
-            console.log("false");
-        }
-
-        return partnerList;
-    }
-
-    static getPartnerAsHtmlElement(){
-        const partners = this.#getPartnerList();
-        const partnersAsHtmlElement = partners.map( (partner) => {
-            return `<article class="review">
-                                <div class="logo-container">
-                                    <img src="./images/project-partner/${partner.imgFilePath}" alt="">
-                                </div>
-                                <h4 class="partner-name">${partner.name}</h4>
-                                <p class="partner-review">${partner.flavourText}</p>
-                            </article>
-                            `
-        });
-
-        return partnersAsHtmlElement.join("");
-    }
-}
-
+]
 
 /*
 ==========
 LOGIC
 ==========
 */
+
+function getPartnerAsHtmlElement() {
+    const partnersAsHtmlElement = partnersAsList.map( (partner) => {
+        return `<article class="review">
+                    <div class="logo-container">
+                        <img src="./images/project-partner/${partner.imageFile}" alt="">
+                    </div>
+                    <h4 class="partner-name">${partner.name}</h4>
+                    <p class="partner-review">${partner.flavourText}</p>
+                </article>
+                `      
+        });
+
+        return partnersAsHtmlElement.join("");
+}
+
 // ******* ADDING ELEMENTS TO THE HTML ***************
 const reviewContainer = document.querySelector(".reviews");
 
-reviewContainer.innerHTML = PartnerList.getPartnerAsHtmlElement();
+reviewContainer.innerHTML = getPartnerAsHtmlElement();
 
 const reviewSlides = reviewContainer.querySelectorAll(".review");
 
